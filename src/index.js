@@ -56,7 +56,6 @@ function createList(data){
 }
 
 function createResult(info, [country]){
-    const result = document.createDocumentFragment();
     const h2 = document.createElement('h2');
     h2.innerHTML = country.flag + ' ' + country.name.official;
     const capital = document.createElement('p');
