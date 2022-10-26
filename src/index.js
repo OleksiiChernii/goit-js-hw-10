@@ -16,10 +16,6 @@ countryRequest(refs.input.value.trim());
 
 refs.input.addEventListener('input', event => {
     countryRequest(event.target.value.trim());
-})
-
-const counrtyHeaders = new Headers({
-    'Content-type': 'application/json'
 });
 
 function fetchCountries(name){
@@ -27,11 +23,7 @@ function fetchCountries(name){
         return;
     }
     clear();
-    fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flag,languages`,
-    {
-        method: 'GET',
-        headers: counrtyHeaders
-    })
+    fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flag,languages`)
         .then(response => {
             if(!response.ok){
                 return new Error(response.status);
