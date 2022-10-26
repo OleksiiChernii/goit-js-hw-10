@@ -4,9 +4,6 @@ export class FetchCountries {
     #list
     #info
 
-    static #URL = 'https://restcountries.com/v3.1/name/'
-    static #PARAMETERS = '?fields=name,capital,population,flag,languages'
-
     constructor({list, info}){
         this.#list = list;
         this.#info = info;
@@ -17,7 +14,7 @@ export class FetchCountries {
             return;
         }
         this.#clear();
-        fetch(FetchCountries.#URL + name + FetchCountries.#PARAMETERS)
+        fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flag,languages`)
             .then(response => {
                 if(!response.ok){
                     return new Error(response.status);
