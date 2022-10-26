@@ -13,7 +13,6 @@ const fc = new FetchCountries(refs);
 const DEBOUNCE_DELAY = 300;
 const countryRequest = debounce((name) => fc.fetchCountries(name), DEBOUNCE_DELAY);
 
-
 window.addEventListener('load', () => countryRequest(refs.input.value.trim()));
 
 refs.input.addEventListener('input', event => {
