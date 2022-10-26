@@ -4,6 +4,9 @@ export class FetchCountries {
     #list
     #info
 
+    static #URL = 'https://restcountries.com/v3.1/name/'
+    static #PARAMETERS = '?fields=name,capital,population,flag,languages'
+
     constructor({list, info}){
         this.#list = list;
         this.#info = info;
@@ -14,18 +17,18 @@ export class FetchCountries {
             return;
         }
         this.#clear();
-        fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flag,languages`)
+        fetch(FetchCountries.#URL + name + FetchCountries.#PARAMETERS)
             .then(response => {
                 if(!response.ok){
                     return new Error(response.status);
                 }
                 return response.json();
             })
-            .then(data => this.#dataProcessing(data))
-            .catch(error => this.#errorProcessing(error));
+            .then(this.#dataProcessing)
+            .catch(this.#errorProcessing);
     }
 
-    #dataProcessing(data){
+    #dataProcessing = (data) => {
         if(data.length > 10){
             Notiflix.Notify.info('Too many matches found. Please enter a more specific name.')
         } else if(data.length <= 10 && data.length > 1){
@@ -35,7 +38,7 @@ export class FetchCountries {
         }
     }
 
-    #errorProcessing(error){
+    #errorProcessing = (error) => {
         console.log(error.message);
         Notiflix.Notify.failure('Oops, there is no counrty with that name');
     }
