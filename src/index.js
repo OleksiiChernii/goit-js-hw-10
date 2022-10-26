@@ -1,5 +1,4 @@
 import './css/styles.css';
-// import { fetchCountries } from './fetchCountries';
 import { FetchCountries } from './fetchCountries';
 
 const debounce = require('lodash.debounce');
