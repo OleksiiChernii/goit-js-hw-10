@@ -1,4 +1,3 @@
-
 import Notiflix from 'notiflix';
 
 export class FetchCountries {
@@ -15,10 +14,7 @@ export class FetchCountries {
             return;
         }
         this.#clear();
-        fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flag,languages`,
-        {
-            'X-Content-Type-Options': 'nosniff'
-        })
+        fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flag,languages`)
             .then(response => {
                 if(!response.ok){
                     return new Error(response.status);
