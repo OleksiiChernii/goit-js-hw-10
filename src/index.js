@@ -18,6 +18,10 @@ refs.input.addEventListener('input', event => {
     countryRequest(event.target.value.trim());
 })
 
+const counrtyHeaders = new Headers({
+    'Content-type': 'application/json'
+});
+
 function fetchCountries(name){
     if(!name){
         return;
@@ -26,9 +30,7 @@ function fetchCountries(name){
     fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flag,languages`,
     {
         method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        headers: counrtyHeaders
     })
         .then(response => {
             if(!response.ok){
